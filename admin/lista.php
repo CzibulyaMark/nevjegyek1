@@ -70,7 +70,7 @@ $kimenet = "
     <form method="post">
         <input type="search" name="kifejezes" id="kifejezes">
     </form>
-    <p><a href="felvetel.php">Új névjegy felvétele</a</p>
+    <p><a href="felvetel.php">Új névjegy felvétele</a><a href="kilepes.php"> | Kilépés</p>
     
     <?php 
       print_r($kimenet);

@@ -1,26 +1,22 @@
 <?php 
 session_start();
 if (isset($_POST['rendben'])) {
-   require("kapcsolat.php");
+    $email = strip_tags(strtolower(trim($_POST['email'])));
+    $jelszo = strip_tags((trim($_POST['jelszo'])));
 
-   $email = mysqli_real_escape_string($dbconn, strip_tags(strtolower(trim($_POST['email']))));
-   $jelszo = sha1(($_POST['jelszo']));
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match("/^[a-zA-Z]*$/", $jelszo)) {
+        $hiba = "Hibás email vagy jelszó";
 
-   if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $hiba = "hibas";
-   }
-
-   else {
-    $sql = "SELECT id FROM felhasznalok WHERE email = '{$email}' AND jelszo = '{$jelszo}' LIMIT 3";
-    $eredmeny = mysqli_query($dbconn,$sql);
-    if (mysqli_num_rows($eredmeny) == 1) {
-        $_SESSION['belepett'] = true;
-        header("Location: lista.php");
     }
     else {
-        $hibak = "hibas";
+            if ($email == "asd@gmail.com" && $jelszo == "asd") {
+                $_SESSION['belepett'] = true;
+                header("Location: lista.php");
+            }
+            else {
+                $hiba = "Hibás email vagy jelszó";            
+            }
     }
-   }
     
 }
 

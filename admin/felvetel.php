@@ -122,6 +122,11 @@ if (isset($_POST['rendben'])) {
         <p><a href="lista.php">Viszza</a></p>
 
     </form>
+
+    <?php 
+    include("footer.html");
+    ?>
+    
 </body>
 
 </html>
